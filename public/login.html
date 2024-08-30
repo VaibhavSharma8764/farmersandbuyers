@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        background-image: url("https://cdn.pixabay.com/photo/2017/06/11/02/05/wheat-2391348_1280.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      form {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(150, 141, 141, 0.2);
+        width: 100%;
+        max-width: 400px;
+        max-height: 80vh;
+        overflow-y: auto;
+        animation: fadeIn 1s ease-out;
+        position: relative;
+      }
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #0c0c0c;
+        text-align: left;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        border: 1px solid #dacece;
+        font-size: 16px;
+        transition: border 0.3s ease;
+        background-color: rgba(245, 242, 242, 0.8);
+      }
+      input:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form id="loginForm" action="/login" method="POST">
+      <h2>Login</h2>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("loginForm");
+      form.addEventListener("submit", function (event) {
+        // Perform any additional client-side validation if needed
+      });
+    </script>
+  </body>
+</html>

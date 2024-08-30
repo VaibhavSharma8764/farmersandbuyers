@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register or Login</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        background-image: url("https://cdn.pixabay.com/photo/2017/06/11/02/05/wheat-2391348_1280.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      form {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(150, 141, 141, 0.2);
+        width: 100%;
+        max-width: 400px;
+        max-height: 80vh;
+        overflow-y: auto;
+        animation: fadeIn 1s ease-out;
+        position: relative;
+      }
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #0c0c0c;
+        text-align: left;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        border: 1px solid #dacece;
+        font-size: 16px;
+        transition: border 0.3s ease;
+        background-color: rgba(245, 242, 242, 0.8);
+      }
+      input:focus,
+      select:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      #farmerFields,
+      #buyerFields {
+        display: none;
+        animation: slideDown 0.5s ease-out;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .form-group img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-top: 10px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .form-group img.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideDown {
+        from {
+          height: 0;
+          opacity: 0;
+        }
+        to {
+          height: 100%;
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registrationForm" method="post" action="register">
+      <h2>Register</h2>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="role">Register as</label>
+        <select id="role" name="role" required>
+          <option value="">Select an option</option>
+          <option value="farmer">Farmer</option>
+          <option value="buyer">Buyer</option>
+        </select>
+      </div>
+
+      <div id="farmerFields">
+        <div class="form-group">
+          <label for="farmName">Farm Name</label>
+          <input type="text" id="farmName" name="farmName" />
+        </div>
+        <div class="form-group">
+          <label for="cropType">Crop Type</label>
+          <input type="text" id="cropType" name="cropType" />
+        </div>
+        <div class="form-group">
+          <img
+            src="https://dineshpanday.wordpress.com/wp-content/uploads/2016/04/agriculture-in-nepal.jpg?w=371"
+            alt="Farmer Field"
+            id="farmerImage"
+          />
+        </div>
+      </div>
+
+      <div id="buyerFields">
+        <div class="form-group">
+          <label for="businessName">Business Name</label>
+          <input type="text" id="businessName" name="businessName" />
+        </div>
+        <div class="form-group">
+          <label for="productInterest">Product Interest</label>
+          <input type="text" id="productInterest" name="productInterest" />
+        </div>
+        <div class="form-group">
+          <img
+            src="https://i.pinimg.com/736x/3d/af/55/3daf554bbdbf110294b9181ceef8f4d3.jpg"
+            id="buyerImage"
+          />
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const roleSelect = document.getElementById("role");
+      const farmerFields = document.getElementById("farmerFields");
+      const buyerFields = document.getElementById("buyerFields");
+      const farmerImage = document.getElementById("farmerImage");
+      const buyerImage = document.getElementById("buyerImage");
+      const form = document.getElementById("registrationForm");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+
+      roleSelect.addEventListener("change", function () {
+        farmerFields.style.display = "none";
+        buyerFields.style.display = "none";
+        farmerImage.classList.remove("visible");
+        buyerImage.classList.remove("visible");
+
+        if (this.value === "farmer") {
+          farmerFields.style.display = "block";
+          setTimeout(() => {
+            farmerImage.classList.add("visible");
+          }, 100);
+        } else if (this.value === "buyer") {
+          buyerFields.style.display = "block";
+          setTimeout(() => {
+            buyerImage.classList.add("visible");
+          }, 100);
+        }
+      });
+
+      form.addEventListener("submit", function (event) {
+        if (password.value !== confirmPassword.value) {
+          alert("Passwords do not match!");
+        }
+      });
+    </script>
+  </body>
+</html>
