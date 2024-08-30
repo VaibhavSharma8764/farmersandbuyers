@@ -1,18 +1,26 @@
 const jwt = require("jsonwebtoken");
 const register = require("../models/userModel.js");
 
-const auth = async (req, resp, next) => {
+const auth = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
-    const userVerify = await jwt.verify(token, process.env.SECRET_KEY);
-    const user = await register.findOne({ _id: userVerify._id });
+    if (!token) {
+      return res.status(401).send("No token, authorization denied");
+    }
 
-    //for logout
+    const decoded = await jwt.verify(token, process.env.SECRET_KEY); // Check that this is defined
+    const user = await register.findOne({ _id: decoded._id });
+
+    if (!user) {
+      return res.status(401).send("User not found");
+    }
+
     req.token = token;
     req.user = user;
     next();
   } catch (error) {
-    resp.status(401).send("PLEASE! FIRST LOGIN THEN LOGOUT OR UPLOAD FILE");
+    res.status(401).send("Unauthorized");
   }
 };
+
 module.exports = auth;

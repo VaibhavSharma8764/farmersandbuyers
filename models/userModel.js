@@ -103,7 +103,7 @@ userSchema.pre("save", async function (next) {
     this.confirmPassword = await bcrypt.hash(this.password, 10);
 
     // //for removing of (confirmPassowrd) field in database
-    this.confirmPassword = undefined;
+    // this.confirmPassword = undefined;
   }
   next();
 });
